@@ -10,7 +10,7 @@ const Header = (props) => {
           <li>
             <i className="fas fa-search"></i>
           </li>
-          <li>
+          <li onClick={props.settingsHandler}>
             <i className="fas fa-cog"></i>
           </li>
         </ul>

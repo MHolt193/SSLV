@@ -1,6 +1,12 @@
 import React from "react";
 
 const Home = (props) => {
-    return null;
+    return (
+        <>
+        <ul>
+            {props.results}
+        </ul>
+        </>
+    )
 }
 export default Home;

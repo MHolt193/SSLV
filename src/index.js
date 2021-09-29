@@ -7,9 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import routes from './routes'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router history={browserHistory} routes={routes} />
-  </React.StrictMode>,
+    <Router history={browserHistory} routes={routes} />,
   document.getElementById('root')
 );
 

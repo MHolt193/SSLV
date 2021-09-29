@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import Settings from "./Components/Settings";
 
-function App() {
+const App = (props) => {
   const [settingsUp, controlSettings] = useState(false);
 
   const settingsHandler = () => {
@@ -18,6 +18,7 @@ function App() {
         ""
       )}
       <Header settingsHandler={settingsHandler} />
+      {props.children}
     </div>
   );
 }

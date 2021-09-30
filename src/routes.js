@@ -5,6 +5,6 @@ import Home from './Components/Home'
 
 export default (
     <Route path='/' component={App} >
-        <IndexRoute component={props => <Home apiResults='' {...props}/>} />
+        <IndexRoute component={props => <Home results='background' {...props}/>} />
     </Route>
 )

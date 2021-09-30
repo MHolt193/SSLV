@@ -4,7 +4,7 @@ const Home = (props) => {
     return (
         <>
         <ul>
-            {props.results}
+           <li> {props.results}</li>
         </ul>
         </>
     )

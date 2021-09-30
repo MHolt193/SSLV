@@ -16,7 +16,9 @@
   background-color: rgb(39, 38, 38);
   border-radius: 10px;
   width: 75%;
+  max-width: 800px;
   height: 60%;
+  max-height:600px;
   box-shadow: 1px 1px 10px rgb(105, 105, 105);
 }
 .title-section {
@@ -45,6 +47,7 @@
   background-color: rgba(119, 118, 118, 0.25);
   border-radius: 5px;
   border: none;
+  cursor: pointer;
 }
 .close-button:hover {
   transform: scale(1.1, 1.1);
@@ -64,12 +67,26 @@
 .services {
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: baseline;
+  justify-content: center;
+  align-items:center;
   color: white;
-  margin-left: 10px;
+  margin-left: -15px;
+  width: 100%;
   font-family: "Gemunu Libre", sans-serif;
   font-size: 30px;
+}
+.services label{
+  width: 75%;
+  max-width: 500px;
+  height: 45px;
+  margin: 0px;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  display: flex;
+}
+.services label:hover{
+  background-color: grey;
 }
 .footer {
   border-top: 2px solid rgb(54, 54, 54);
@@ -88,6 +105,7 @@
   color: white;
   font-family: "Gemunu Libre", sans-serif;
   font-size: 25px;
+  cursor: pointer;
 }
 .footer button:hover{
     border: 2px solid rgb(163, 28, 241);

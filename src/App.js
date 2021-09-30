@@ -1,14 +1,16 @@
 import { useState } from "react";
 import "./App.css";
 import Header from "./Components/Header";
-import Settings from "./Components/Settings";
+import Settings from "./Components/Settings/Settings";
 
 const App = (props) => {
+  
   const [settingsUp, controlSettings] = useState(false);
-
+  
   const settingsHandler = () => {
     settingsUp === false ? controlSettings(true) : controlSettings(false);
   };
+  
 
   return (
     <div className="App">

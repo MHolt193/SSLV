@@ -18,7 +18,7 @@
   width: 75%;
   max-width: 800px;
   height: 60%;
-  max-height:600px;
+  max-height: 600px;
   box-shadow: 1px 1px 10px rgb(105, 105, 105);
 }
 .title-section {
@@ -58,24 +58,24 @@
   max-height: calc(95% - 60px);
   overflow-y: auto;
 }
-.body p{
-    margin-top: 0;
-    font-family: "Gemunu Libre", sans-serif;
-    color: white;
-    font-size: 24px;;
+.body p {
+  margin-top: 0;
+  font-family: "Gemunu Libre", sans-serif;
+  color: white;
+  font-size: 24px;
 }
 .services {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   color: white;
   margin-left: -15px;
   width: 100%;
   font-family: "Gemunu Libre", sans-serif;
   font-size: 30px;
 }
-.services label{
+.services label {
   width: 75%;
   max-width: 500px;
   height: 45px;
@@ -85,7 +85,7 @@
   border-top: 1px solid black;
   display: flex;
 }
-.services label:hover{
+.services label:hover {
   background-color: grey;
 }
 .footer {
@@ -107,9 +107,9 @@
   font-size: 25px;
   cursor: pointer;
 }
-.footer button:hover{
-    border: 2px solid rgb(163, 28, 241);
+.footer button:hover {
+  border: 2px solid rgb(163, 28, 241);
 }
-.footer button:focus{
-    border: 2px solid rgb(163, 28, 241);
+.footer button:focus {
+  border: 2px solid rgb(163, 28, 241);
 }

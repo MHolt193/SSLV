@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import classes from "./Settings.module.css";
-import services from './services'
+import services from "./services";
 
 const Settings = (props) => {
-      const checkHandler = (event) =>{
-        if(event.target.checked === true){
-          localStorage.setItem(event.target.id, true);
-        }
-      }
+  const checkHandler = (event) => {
+    if (event.target.checked === true) {
+      localStorage.setItem(event.target.id, true);
+    }
+    if (event.target.checked === false) {
+      localStorage.removeItem(event.target.id);
+    }
+  };
   return (
     <div className={classes.settings}>
       <div className={classes["settings-card"]}>
@@ -22,23 +25,25 @@ const Settings = (props) => {
         </div>
         <div className={classes.body}>
           <p>Select your streaming services.</p>
-          <ul >
+          <ul>
             {services.map((service) => (
               <li key={service.id} className={classes.services}>
                 <label htmlFor={service.id}>
                   {service.name}
-                  <input type="checkbox" id={service.id} onClick={checkHandler}/>
+                  <input
+                    type="checkbox"
+                    id={service.id}
+                    onClick={checkHandler}
+                  />
                 </label>
               </li>
             ))}
           </ul>
-         
         </div>
         <div className={classes.footer}>
-         <button onClick={props.settingsHandler}>Save</button>
+          <button onClick={props.settingsHandler}>Save</button>
         </div>
       </div>
-      
     </div>
   );
 };

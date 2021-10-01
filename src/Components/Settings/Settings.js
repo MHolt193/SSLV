@@ -1,6 +1,8 @@
 import React from "react";
 import classes from "./Settings.module.css";
 import services from "./services";
+import { connect } from 'react-redux';
+import { setSelected, setUnselected } from '../redux/settings/settings.actions'
 
 const Settings = (props) => {
   const checkHandler = (event) => {
@@ -48,4 +50,16 @@ const Settings = (props) => {
   );
 };
 
-export default Settings;
+const mapStateToProps = state =>{
+  return{
+    selected: state.settings.selected,
+  }
+}
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    setSelected: () => dispatch(setSelected()),
+    setUnselected: () => dispatch(setUnselected()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

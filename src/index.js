@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+//REACT_ROUTER
 import { Router, browserHistory } from 'react-router';
-import reportWebVitals from './reportWebVitals';
-
 import routes from './routes'
+//REDUX
+import { Provider} from 'react-redux'
+import store from './Components/redux/Store'
+
+
+
 
 ReactDOM.render(
-    <Router history={browserHistory} routes={routes} />,
+  <Provider store={store}>
+    <Router history={browserHistory} routes={routes} />
+  </Provider>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

@@ -28,6 +28,10 @@
 .nav {
   margin-left: -5px;
 }
+.nav-scroll{
+  position: fixed;
+  top:0
+}
 .nav-list {
   display: flex;
   justify-content: space-between;

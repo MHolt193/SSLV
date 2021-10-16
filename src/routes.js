@@ -6,7 +6,7 @@ import Catagories from './Components/Catagories/Catagories'
 
 export default (
     <Route path='/' component={App} >
-        <IndexRoute component={props => <Home results='background' {...props}/>} />
+        <IndexRoute component={Home} />
         <Route path='/Catagories' component={Catagories} />
     </Route>
 )

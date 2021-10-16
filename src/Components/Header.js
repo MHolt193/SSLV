@@ -6,7 +6,7 @@ const Header = (props) => {
   return (
     <div className={classes.container}>
       <div className={classes["top-nav"]}>
-        <p>SSLV</p>
+       <Link to='/'> <p>SSLV</p> </Link>
         <ul className={classes.list}>
           <li>
             <i className="fas fa-search"></i>

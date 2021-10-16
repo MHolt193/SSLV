@@ -5,12 +5,9 @@
   justify-content: center;
   align-items: center;
   color: white;
-  margin-left: -15px;
-  width: 100%;
-  font-family: "Gemunu Libre", sans-serif;
+  padding-left:0px;
+  font-family: 'Roboto Mono', monospace;
   font-size: 30px;
-  height: 100%;
-  width: 100%;
   background: rgb(32,32,32);
   background: -moz-linear-gradient(180deg, rgba(32,32,32,1) 33%, rgba(101,101,101,1) 70%, rgba(116,116,116,1) 89%);
   background: -webkit-linear-gradient(180deg, rgba(32,32,32,1) 33%, rgba(101,101,101,1) 70%, rgba(116,116,116,1) 89%);
@@ -18,9 +15,10 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#202020",endColorstr="#747474",GradientType=1); 
   background-repeat:no-repeat;
   background-size:auto;
+  margin-top:150px;
 }
 .catagories{
-    width: 75%;
+    width: 100%;
     max-width: 500px;
     height: 45px;
     margin: 0px;
@@ -32,4 +30,10 @@
     transform: scale(1.1,1.1);
     background: linear-gradient(90deg, rgb(19, 19, 19) 60%, rgb(66, 66, 66) 80%);
     cursor: pointer;
+}
+.catagories:focus {
+    transform: scale(1.1,1.1);
+    background: linear-gradient(90deg, rgb(19, 19, 19) 60%, rgb(66, 66, 66) 80%);
+    cursor: pointer;
+    border: none;
 }

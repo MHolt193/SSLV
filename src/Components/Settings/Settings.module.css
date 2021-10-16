@@ -33,7 +33,7 @@
   border-top-right-radius: 10px;
 }
 .title-section h2 {
-  font-family: "Gemunu Libre", sans-serif;
+  font-family: 'Roboto Mono', monospace;
   font-size: 40px;
   padding: 0px;
   margin: 10px 25px;
@@ -44,9 +44,10 @@
   height: 30px;
   width: 30px;
   color: white;
-  background-color: rgba(119, 118, 118, 0.25);
+  background-color: rgb(119, 118, 118);
   border-radius: 5px;
   border: none;
+  border-bottom: 2px solid rgb(75, 75, 75);
   cursor: pointer;
 }
 .close-button:hover {
@@ -60,9 +61,9 @@
 }
 .body p {
   margin-top: 0;
-  font-family: "Gemunu Libre", sans-serif;
+  font-family: 'Roboto Mono', monospace;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
 }
 .services {
   display: flex;
@@ -72,7 +73,7 @@
   color: white;
   margin-left: -15px;
   width: 100%;
-  font-family: "Gemunu Libre", sans-serif;
+  font-family: 'Roboto Mono', monospace;
   font-size: 30px;
 }
 .services label {
@@ -95,21 +96,22 @@
   margin-bottom: 10px;
 }
 .footer button {
-  background-color: rgb(68, 15, 68);
+  background-color: rgb(103, 105, 248);
   border-radius: 5px;
-  border: none;
+  border:none;
+  border-top: 2px solid rgb(139, 141, 226);
   height: 40px;
   width: 75px;
   margin-top: 10px;
   margin-right: 25px;
   color: white;
-  font-family: "Gemunu Libre", sans-serif;
-  font-size: 25px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 20px;
   cursor: pointer;
 }
 .footer button:hover {
-  border: 2px solid rgb(163, 28, 241);
+  border: 2px solid rgb(139, 141, 226);
 }
 .footer button:focus {
-  border: 2px solid rgb(163, 28, 241);
+  border: 2px solid rgb(139, 141, 226);
 }

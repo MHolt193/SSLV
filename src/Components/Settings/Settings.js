@@ -13,6 +13,7 @@ const Settings = (props) => {
       localStorage.removeItem(event.target.id);
     }
   };
+  
   return (
     <div className={classes.settings}>
       <div className={classes["settings-card"]}>

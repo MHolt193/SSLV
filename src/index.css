@@ -1,6 +1,4 @@
-html{
-  height: 100%;
-}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -15,7 +13,7 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#202020",endColorstr="#747474",GradientType=1); 
   background-repeat:no-repeat;
   background-size:auto;
-  height:100%;
+  height:100vh;
 }
 
 code {

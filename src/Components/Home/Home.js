@@ -3,6 +3,7 @@ import apiKey from "../../key";
 import classes from "./Home.module.css";
 
 import MovieCard from "./MovieCard";
+import Featured from './Featured'
 
 const Home = (props) => {
   const [apiResponse, setApiResults] = useState([]);
@@ -22,6 +23,12 @@ const Home = (props) => {
   };
   return (
     <div className={classes.container}>
+      <div>
+      {apiRetrieved === true && apiResponse.titles.length > 1
+        ? <Featured results={apiResponse}/>
+        : ""}
+        </div>
+        <div className={classes.list}>
       {apiRetrieved === true && apiResponse.titles.length > 1
         ? apiResponse.titles.map((title) => (
             <MovieCard
@@ -33,6 +40,7 @@ const Home = (props) => {
             </MovieCard>
           ))
         : ""}
+        </div>
     </div>
   );
 };

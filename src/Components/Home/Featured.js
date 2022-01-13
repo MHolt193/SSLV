@@ -14,7 +14,7 @@ const Featured = (props) => {
         src={`http://img.omdbapi.com/?apikey=89a451f1&i=${props.results.titles[randomResult]["imdb_id"]}`}
         alt={props.results.titles[randomResult].title}
       ></img>
-      <div>
+      <div className={classes.buttons}>
         <button>+ My List</button>
         <button>Info</button>
       </div>

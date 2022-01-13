@@ -18,8 +18,8 @@ const Header = (props) => {
       </div>
       <nav className={classes.nav}>
         <ul className={classes["nav-list"]}>
-          <li>TV Shows</li>
-          <li>Movies</li>
+         <Link to='/Tv' ><li>TV Shows</li></Link>
+          <Link to='/movies'><li>Movies</li></Link>
          <Link to='/Catagories'> <li>Catagories</li></Link>
         </ul>
       </nav>

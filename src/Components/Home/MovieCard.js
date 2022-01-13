@@ -1,15 +1,41 @@
-import React from 'react';
-import classes from './MovieCard.module.css'
+import React, { useState, useEffect, useCallback } from "react";
+import classes from "./MovieCard.module.css";
 
+const MovieCard = (props) => {
+  const [apiResponse, setApiResults] = useState([]);
+  const [apiRetrieved, setApiRetrieved] = useState(false);
+  const callApi = useCallback(async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/find/${props.imdbid}?api_key=5f027ed6c33a834707d6d1b883944a4b&external_source=imdb_id`
+    );
+    const data = await response.json();
+    setApiResults(data);
+    setApiRetrieved(true);
+  }, [props.imdbid]);
+  useEffect(() => {
+    callApi();
+  }, [callApi]);
 
-const MovieCard = (props) =>{
-    
- return(
-     <div className={classes.card}>
-         <img src={`http://img.omdbapi.com/?apikey=89a451f1&i=${props.imdbid}`} alt={`${props.imgalt} poster`}/>
-         <p>{props.children}</p>
-     </div>
- )
-}
+  if (apiRetrieved === true) {
+    console.log(apiResponse);
+  }
 
-export default MovieCard
+  return (
+    <div className={classes.card}>
+      {apiRetrieved === true && apiResponse['movie_results'].length  >= 1 ?
+      <img
+        src={`http://image.tmdb.org/t/p/w154${apiResponse['movie_results'][0]['poster_path']}`}
+        alt={`${props.imgalt} poster`}
+      />: apiRetrieved === true && apiResponse['tv_results'].length >= 1 ?<img
+      src={`http://image.tmdb.org/t/p/w154${apiResponse['tv_results'][0]['poster_path']}`}
+      alt={`${props.imgalt} poster`}
+    />:<img
+    src={`http://image.tmdb.org/t/p/w150/`}
+    alt={`${props.imgalt} poster`}
+  />}
+      <p>{props.children}</p>
+    </div>
+  );
+};
+
+export default MovieCard;

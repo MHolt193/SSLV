@@ -8,11 +8,7 @@
   padding-left:0px;
   font-family: 'Roboto Mono', monospace;
   font-size: 30px;
-  background: rgb(32,32,32);
-  background: -moz-linear-gradient(180deg, rgba(32,32,32,1) 33%, rgba(101,101,101,1) 70%, rgba(116,116,116,1) 89%);
-  background: -webkit-linear-gradient(180deg, rgba(32,32,32,1) 33%, rgba(101,101,101,1) 70%, rgba(116,116,116,1) 89%);
-  background: linear-gradient(180deg, rgba(32,32,32,1) 33%, rgba(101,101,101,1) 70%, rgba(116,116,116,1) 89%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#202020",endColorstr="#747474",GradientType=1); 
+  background: rgba(49,49,51,255);
   background-repeat:no-repeat;
   background-size:auto;
   margin-top:150px;

@@ -32,6 +32,8 @@
 
 .poster {
   grid-area: poster;
+  justify-self: center;
+  align-items: center;
   margin: 10px;
   height: 90%;
   width: 100%;
@@ -80,4 +82,80 @@
   justify-self: start;
   align-items: start;
   margin-top: 0px;
+}
+@media screen and (max-width: 480px) {
+  .infoCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(150px, auto);
+    grid-template-areas:
+      "poster  poster close"
+      "poster  poster ."
+      'info info .'
+      "cast cast .";
+    background-color: rgba(61, 60, 63, 255);
+    border-radius: 10px;
+    margin-top: 50px;
+    width: 85%;
+    gap: 15px;
+    max-width: 1000px;
+    height: 75%;
+    max-height: 800px;
+    box-shadow: 1px 1px 10px rgb(105, 105, 105);
+    overflow: auto;
+  }
+  .poster {
+    grid-area: poster;
+    justify-self: center;
+    align-self: center;
+    margin: 10px;
+    height: 100%;
+    width: 80%;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 100);
+  }
+  .info {
+    grid-area: info;
+    display: grid;
+    justify-self: center;
+    grid-template-rows: min-content min-content min-content;
+    grid-template-areas:
+      "title title"
+      "description description"
+      "rating rating";
+  }
+  .title {
+    grid-area: title;
+    justify-self: start;
+    margin-bottom: 0px;
+    text-align: left;
+    width: 100%;
+    border-bottom: 2px solid rgb(92, 92, 92);
+  }
+  .close {
+    grid-area: close;
+    justify-self: end;
+    align-items: start;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+  .description {
+    grid-area: description;
+    justify-self: start;
+    align-items: start;
+    text-align: left;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    width: 90%;
+    border-bottom: 2px solid rgb(92,92,92)
+  }
+  .rating {
+    grid-area: rating;
+    justify-self: start;
+    align-items: start;
+    margin-top: 0px;
+  }
 }

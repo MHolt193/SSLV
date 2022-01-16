@@ -16,24 +16,20 @@ const MovieCard = (props) => {
     callApi();
   }, [callApi]);
 
-  if (apiRetrieved === true) {
-    console.log(apiResponse);
-  }
 
   return (
-    <div className={classes.card}>
+    <div className={classes.card} onClick={props.onClick}>
       {apiRetrieved === true && apiResponse['movie_results'].length  >= 1 ?
-      <img
+      <img  id={props.id}
         src={`http://image.tmdb.org/t/p/w154${apiResponse['movie_results'][0]['poster_path']}`}
         alt={`${props.imgalt} poster`}
-      />: apiRetrieved === true && apiResponse['tv_results'].length >= 1 ?<img
+      />: apiRetrieved === true && apiResponse['tv_results'].length >= 1 ?<img  id={props.id}
       src={`http://image.tmdb.org/t/p/w154${apiResponse['tv_results'][0]['poster_path']}`}
       alt={`${props.imgalt} poster`}
-    />:<img
+    />:<img  id={props.id}
     src={`http://image.tmdb.org/t/p/w150/`}
     alt={`${props.imgalt} poster`}
   />}
-      <p>{props.children}</p>
     </div>
   );
 };

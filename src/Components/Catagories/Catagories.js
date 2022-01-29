@@ -8,14 +8,18 @@ const Catagories = (props) => {
     const [propId, setPropId] = useState(null)
 
   const  catagoryHandler = (event) =>{
-        setPropId(event.target.id);
-        setShown(true)
+       if (catagoryUp === false){ 
+          setPropId(event.target.id);
+         setShown(true)
+        }else {
+          setShown(false)
+        }
     }
   return (
       <>
-    {catagoryUp === true ? <Catagory cid={propId} />:''}
-    <ul className={classes["catagories-container"]}>
-      {catagoryUp === true ? '':selections.map((selection) => (
+    {catagoryUp === true ? <Catagory cid={propId} catagoryHandler={catagoryHandler} />:null}
+    <ul className={classes["catagories-container"]} style={catagoryUp? {display: 'none'}:{display: 'flex'}}>
+      {catagoryUp === true ? null:selections.map((selection) => (
         <li className={classes.catagories} id={selection.id} key={selection.id}  onClick={catagoryHandler} tabIndex='0'>{selection.name}</li>
       ))}
     </ul>

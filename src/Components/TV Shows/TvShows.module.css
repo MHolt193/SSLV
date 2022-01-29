@@ -28,3 +28,15 @@
   .list::-webkit-scrollbar {
     display: none;
   }
+  .backButton{
+    display: flex;
+    position: absolute;
+    top: 120px;
+    left: 3px;
+  }
+  .backButton button{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius:10px;
+  }

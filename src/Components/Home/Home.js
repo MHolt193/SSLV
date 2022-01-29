@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import apiKey from "../../key";
 import classes from "./Home.module.css";
 import services from "../Settings/services";
@@ -12,7 +12,7 @@ const Home = (props) => {
   const [apiResponse, setApiResults] = useState([]);
   const [apiRetrieved, setApiRetrieved] = useState(false);
 
-  const callApi = useCallback(async () => {
+  const callApi = async () => {
     const myServices = services.map((service) =>
       localStorage.getItem(service.id) === "true" ? service.id + "," : ""
     );
@@ -22,15 +22,15 @@ const Home = (props) => {
     const data = await response.json();
     setApiResults(data);
     setApiRetrieved(true);
-  }, []);
+  };
 
   useEffect(() => {
     callApi();
-  }, [callApi]);
+  }, []);
 
   /* TITLE INFO */
   const [titleInfoUp, controlTitleInfo] = useState(false);
-  const [titleId, getTitleId] = useState(null);
+  const [titleId, getTitleId] = useState(undefined);
 
   const titleInfoHandler = (event) => {
     if (titleInfoUp === false) {
@@ -47,14 +47,14 @@ const Home = (props) => {
       {titleInfoUp === true ? (
           <TitleInfo titleInfoHandler={titleInfoHandler} id={titleId} />
         ) : (
-          ""
+          null
         )}
       <div className={classes.list}>
         <div>
           {apiRetrieved === true && apiResponse.titles.length >= 1 ? (
-            <Featured results={apiResponse} />
+            <Featured results={apiResponse} titleInfoHandler={titleInfoHandler} />
           ) : (
-            ""
+            null
           )}
         </div>
         {apiRetrieved === true && apiResponse.titles.length >= 1
@@ -69,7 +69,7 @@ const Home = (props) => {
                 {title.title}
               </MovieCard>
             ))
-          : ""}
+          : null}
       </div>
     </div>
   );

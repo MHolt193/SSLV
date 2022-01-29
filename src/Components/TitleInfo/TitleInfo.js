@@ -12,20 +12,22 @@ const TitleInfo = (props) => {
   const [tmdbApiResponse, setTmdbApiResults] = useState([]);
   const [tmdbApiRetrieved, setTmdbApiRetrieved] = useState(false);
 
-  const callWatchModeApi = useCallback(async () => {
+  const callWatchModeApi = async () => {
     const response = await fetch(
-      `https://api.watchmode.com/v1/title/${props.id}/details/?apiKey=${apiKey}&append_to_response=sources,episodes,cast-crew`
+      `https://api.watchmode.com/v1/title/${props.id}/details/?apiKey=${apiKey}&append_to_response=sources`
     );
     const data = await response.json();
     setWatchModeApiResults(data);
     setWatchModeApiRetrieved(true);
-  }, [props.id]);
+    console.log(data);
+  };
 
   useEffect(() => {
     callWatchModeApi();
     //eslint-disable-next-line
-  }, [callWatchModeApi]);
-  let titleLink;
+  }, []);
+
+  let titleLink = "";
   if (watchModeApiRetrieved && watchModeApiResponse.sources.length >= 1) {
     for (let i = 0; i < watchModeApiResponse.sources.length; i++) {
       if (
@@ -33,19 +35,25 @@ const TitleInfo = (props) => {
         "true"
       ) {
         titleLink = `${watchModeApiResponse.sources[i]["web_url"]}`;
+        break;
       }
     }
-    const callTmdbApi = async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/find/${watchModeApiResponse["imdb_id"]}?api_key=5f027ed6c33a834707d6d1b883944a4b&external_source=imdb_id`
-      );
-      const data = await response.json();
-      setTmdbApiResults(data);
-      setTmdbApiRetrieved(true);
-    };
-    callTmdbApi();
   }
 
+  const callTmdbApi = useCallback(async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/find/${watchModeApiResponse["imdb_id"]}?api_key=5f027ed6c33a834707d6d1b883944a4b&external_source=imdb_id`
+    );
+    const data = await response.json();
+    setTmdbApiResults(data);
+    setTmdbApiRetrieved(true);
+  }, [watchModeApiResponse]);
+
+  useEffect(() => {
+    if (watchModeApiRetrieved && watchModeApiResponse.sources.length >= 1) {
+      callTmdbApi();
+    }
+  }, [watchModeApiRetrieved, watchModeApiResponse, callTmdbApi]);
   return (
     <div className={classes.container}>
       <div className={classes.infoCard}>
@@ -66,9 +74,7 @@ const TitleInfo = (props) => {
                 alt={`${watchModeApiResponse.title} poster`}
               />
             </a>
-          ) : (
-            ""
-          )}
+          ) : null}
         </div>
         <div className={classes.info}>
           <button className={classes.close} onClick={props.titleInfoHandler}>

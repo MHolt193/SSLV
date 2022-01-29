@@ -10,13 +10,14 @@ const Featured = (props) => {
 
   return (
     <div className={classes.featured}>
+      <h1 style={{fontSize: 28+'px'}}>Featured Title</h1>
       <img
         src={`http://img.omdbapi.com/?apikey=89a451f1&i=${props.results.titles[randomMovie]["imdb_id"]}`}
         alt={props.results.titles[randomMovie].title}
       ></img>
       <div className={classes.buttons}>
         <button>+ My List</button>
-        <button>Info</button>
+        <button onClick={props.titleInfoHandler} id={props.results.titles[randomMovie].id}>Info</button>
       </div>
     </div>
   );

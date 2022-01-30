@@ -6,10 +6,14 @@ import classes from "../TV Shows/TvShows.module.css";
 import MovieCard from "../Home/MovieCard";
 
 const Catagory = (props) => {
-  /* MOVIE LIST API CALL */
+  /* MOVIE LIST API CALL 
+      from WatchMode*/
+
+      //Watchmode API STATES
   const [watchModeApiResponse, setApiResults] = useState([]);
   const [watchModeApiRetrieved, setApiRetrieved] = useState(false);
-
+        //callApi declares myServices and loops over services.js to compare to localstorage
+        //then calls watchmode API with myservices as param
   const callApi = useCallback(async () => {
     const myServices = services.map((service) =>
       localStorage.getItem(service.id) === "true" ? service.id + "," : ""
@@ -27,9 +31,13 @@ const Catagory = (props) => {
   }, [callApi]);
 
   /* TITLE INFO */
+
+  //titleInfo STATES
   const [titleInfoUp, controlTitleInfo] = useState(false);
   const [titleId, getTitleId] = useState(undefined);
 
+  //titleInfoHandler 
+  //reads titleInfoUp state, if false, sets true and gets target id, else sets false
   const titleInfoHandler = (event) => {
     if (titleInfoUp === false) {
       getTitleId(event.target.id);

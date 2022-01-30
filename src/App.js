@@ -15,7 +15,16 @@ const App = (props) => {
       window.location.reload(true)
     }
   };
+  /* Search */
+  const [searchActive, setSearchActive] = useState(false);
 
+  const searchHandler = () =>{
+    if (searchActive === false){
+      setSearchActive(true);
+    }else{
+      setSearchActive(false);
+    }
+  }
 
 
   return (
@@ -25,7 +34,7 @@ const App = (props) => {
       ) : (
         ""
       )}
-      <Header settingsHandler={settingsHandler} />
+      <Header searchActive={searchActive} searchHandler={searchHandler} settingsHandler={settingsHandler} />
       {props.children}
     </div>
   );

@@ -27,12 +27,14 @@
 }
 .list li {
   list-style-type: none;
+  display:flex;
+  justify-content: center;
+  align-items: center;
   color: whitesmoke;
   font-size: 18px;
-  border-radius: 18px;
 }
-.list li:hover {
-  transform: scale(1.5, 1.5);
+.list li i:hover {
+  transform: scale(1.5);
 }
 .nav {
   margin-left: -5px;
@@ -65,4 +67,19 @@ a:hover {
 }
 a:active {
   text-decoration: none;
+}
+.search{
+  margin-left: 5px;
+  display:none;
+  border-radius: 15px; 
+  height: 20px;
+  border: 2px solid rgb(65, 65, 65);
+  background-color:rgb(83, 83, 83);
+  color: white;
+}
+.search:hover{
+  border: 2px solid rgb(139, 141, 226)
+}
+.search:active{
+  border: 2px solid rgb(139, 141, 226)
 }

@@ -19,7 +19,7 @@ const Header = (props) => {
                 placeholder="NAME OF TITLE"
                 style={
                   props.searchActive === true
-                    ? { display: "inline" }
+                    ? { display: "inline"}
                     : { display: "none" }
                 }
               />

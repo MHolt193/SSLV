@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useRef, useEffect} from "react";
 import classes from "./Header.module.css";
 import { Link } from "react-router";
 
 const Header = (props) => {
+  const searchRef = useRef();
+
+  useEffect(() =>{
+    if (props.searchActive) {
+      searchRef.current.focus();
+    }
+  })
+
   return (
     <div className={classes.container}>
       <div className={classes["top-nav"]}>
@@ -18,6 +26,7 @@ const Header = (props) => {
                 name="search"
                 className={classes.search}
                 placeholder="NAME OF TITLE"
+                ref={searchRef}
                 style={
                   props.searchActive === true
                     ? { display: "inline"}

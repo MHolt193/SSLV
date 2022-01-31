@@ -83,10 +83,11 @@ a:active {
   
 }
 .search:hover{
-  border: 2px solid rgb(139, 141, 226)
+ outline: 2px solid rgb(139, 141, 226)
 }
-.search:active{
-  border: 2px solid rgb(139, 141, 226)
+.search:focus{
+  text-decoration: none;
+  outline: 2px solid rgb(139, 141, 226)
 }
 
 @keyframes search{

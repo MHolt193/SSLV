@@ -29,6 +29,13 @@ const App = (props) => {
     }
   };
 
+  const searchSubmitHandler = (event) => {
+    event.preventDefault();
+    const searchInput = event.target.search;
+    setSearchValue(searchInput.value)
+    console.log(searchValue)
+  }
+
   return (
     <div className="App">
       {settingsUp === true ? (
@@ -38,14 +45,19 @@ const App = (props) => {
       )}
       <Header
         searchActive={searchActive}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
         searchHandler={searchHandler}
         settingsHandler={settingsHandler}
-        
+        searchSubmitHandler={searchSubmitHandler}
       />
-      {searchResults.length > 0? <SearchResults searchResults={searchResults} setSearchResults={setSearchResults}/>:
-      props.children}
+      {searchResults.length > 0 ? (
+        <SearchResults
+          searchResults={searchResults}
+          setSearchResults={setSearchResults}
+          searchValue={searchValue}
+        />
+      ) : (
+        props.children
+      )}
     </div>
   );
 };

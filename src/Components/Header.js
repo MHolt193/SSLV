@@ -12,9 +12,10 @@ const Header = (props) => {
         </Link>
         <ul className={classes.list}>
           <li>
-            <form>
+            <form onSubmit={props.searchSubmitHandler}>
               <input
                 type="text"
+                name="search"
                 className={classes.search}
                 placeholder="NAME OF TITLE"
                 style={

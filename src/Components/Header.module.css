@@ -3,10 +3,12 @@
 .container {
   display: flex;
   background-color: rgba(0, 0, 0, 0.75);
+  height: 100px;
   width: 100%;
   flex-direction: column;
   position: fixed;
   top: 0;
+  margin: 0px;
 }
 .top-nav {
   display: flex;
@@ -42,12 +44,12 @@
 .nav-list {
   display: flex;
   justify-content: space-between;
-  margin-top: 0px;
+  align-items: center;
+  margin-top: 5px;
   margin-right: 25px;
 }
 .nav-list li {
   list-style-type: none;
-  margin-left: 0px;
   font-weight: bold;
   color: white;
   font-family: 'Roboto Mono', monospace;
@@ -69,17 +71,25 @@ a:active {
   text-decoration: none;
 }
 .search{
-  margin-left: 5px;
+  animation-name: search;
+  animation-duration:1s;
   display:none;
+  margin-top: 0px;
   border-radius: 15px; 
-  height: 20px;
+  width:150px;
   border: 2px solid rgb(65, 65, 65);
   background-color:rgb(83, 83, 83);
   color: white;
+  
 }
 .search:hover{
   border: 2px solid rgb(139, 141, 226)
 }
 .search:active{
   border: 2px solid rgb(139, 141, 226)
+}
+
+@keyframes search{
+  from {width: 0px; }
+  to {width: 150px;}
 }

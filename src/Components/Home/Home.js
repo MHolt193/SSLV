@@ -51,13 +51,13 @@ const Home = (props) => {
         )}
       <div className={classes.list}>
         <div>
-          {apiRetrieved === true && apiResponse.titles.length >= 1 ? (
+          {apiRetrieved === true && apiResponse.titles.length !== undefined ? (
             <Featured results={apiResponse} titleInfoHandler={titleInfoHandler} />
           ) : (
             null
           )}
         </div>
-        {apiRetrieved === true && apiResponse.titles.length >= 1
+        {apiRetrieved === true && apiResponse.titles.length !== undefined
           ? apiResponse.titles.map((title) => (
               <MovieCard
                 onClick={titleInfoHandler}
@@ -69,7 +69,7 @@ const Home = (props) => {
                 {title.title}
               </MovieCard>
             ))
-          : null}
+          : <p>No Titles Loaded, Out of API calls?</p>}
       </div>
     </div>
   );

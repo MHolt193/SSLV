@@ -28,7 +28,7 @@ const TitleInfo = (props) => {
   }, []);
 
   let titleLink = "";
-  if (watchModeApiRetrieved && watchModeApiResponse.sources.length >= 1) {
+  if (watchModeApiRetrieved && watchModeApiResponse.sources !== undefined) {
     for (let i = 0; i < watchModeApiResponse.sources.length; i++) {
       if (
         localStorage.getItem(watchModeApiResponse.sources[i]["source_id"]) ===
@@ -36,7 +36,7 @@ const TitleInfo = (props) => {
       ) {
         titleLink = `${watchModeApiResponse.sources[i]["web_url"]}`;
         break;
-      }
+      }else{titleLink = `${watchModeApiResponse.sources[0]['web_url']}`}
     }
   }
 
@@ -50,7 +50,7 @@ const TitleInfo = (props) => {
   }, [watchModeApiResponse]);
 
   useEffect(() => {
-    if (watchModeApiRetrieved && watchModeApiResponse.sources.length >= 1) {
+    if (watchModeApiRetrieved && watchModeApiResponse.sources !== undefined) {
       callTmdbApi();
     }
   }, [watchModeApiRetrieved, watchModeApiResponse, callTmdbApi]);

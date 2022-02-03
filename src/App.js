@@ -19,7 +19,6 @@ const App = (props) => {
   /* Search */
   const [searchActive, setSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
 
   const searchHandler = () => {
     if (searchActive === false) {
@@ -32,10 +31,10 @@ const App = (props) => {
   const searchSubmitHandler = (event) => {
     event.preventDefault();
     const searchInput = event.target.search;
-    setSearchValue(searchInput.value)
-    console.log(searchValue)
-  }
+    setSearchValue(searchInput.value);
+  };
 
+  //JSX
   return (
     <div className="App">
       {settingsUp === true ? (
@@ -49,11 +48,10 @@ const App = (props) => {
         settingsHandler={settingsHandler}
         searchSubmitHandler={searchSubmitHandler}
       />
-      {searchResults.length > 0 ? (
+      {searchValue.length > 0 ? (
         <SearchResults
-          searchResults={searchResults}
-          setSearchResults={setSearchResults}
           searchValue={searchValue}
+          setSearchValue={setSearchValue}
         />
       ) : (
         props.children

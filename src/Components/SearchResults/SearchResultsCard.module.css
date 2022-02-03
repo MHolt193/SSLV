@@ -1,0 +1,25 @@
+.card{
+    display: flex;
+    width: 95%;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 10px; 
+    background-color: grey;
+    margin: auto;
+    box-shadow: 1px 1px 10px black;
+}
+.card:hover{
+    transform: scale(1.01);
+    cursor: pointer;
+}
+.card img{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.card p{
+    margin-left: 15px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 22px;
+}
+
+

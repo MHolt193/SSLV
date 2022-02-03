@@ -2,33 +2,75 @@
 import React, { useState, useCallback, useEffect } from "react";
 import apiKey from "../../key";
 import TitleInfo from "../TitleInfo/TitleInfo";
-import services from "../Settings/services";
+import SearchResultsCard from "./SearchResultsCard";
+import classes from "./SearchResults.module.css";
 
-//component function
+// SearchResults component
 const SearchResults = (props) => {
   const [watchModeApiResponse, setWatchModeApiResults] = useState([]);
   const [watchModeApiRetrieved, setWatchModeApiRetrieved] = useState(false);
 
-  const setResults = props.setSearchResults;
+  const setSearchValue = props.setSearchValue;
 
+  //CLOSE BUTTON handler
+  const closeButtonHandler = () => {
+    setSearchValue("");
+  };
+
+  //API CALL
   const callApi = useCallback(async () => {
-    const myServices = services.map((service) =>
-      localStorage.getItem(service.id) === "true" ? service.id + "," : ""
-    );
     const response = await fetch(
       `https://api.watchmode.com/v1/search/?apiKey=${apiKey}&search_field=name&search_value=${props.searchValue}`
     );
     const data = await response.json();
     setWatchModeApiResults(data);
-    setResults(data);
     setWatchModeApiRetrieved(true);
-    console.log(data);
-  }, [props.searchValue, setResults]);
+  }, [props.searchValue]);
 
   useEffect(() => {
     callApi();
   }, [callApi]);
 
-  return <div></div>;
+   /* TITLE INFO */
+   const [titleInfoUp, controlTitleInfo] = useState(false);
+   const [titleId, getTitleId] = useState(undefined);
+ 
+   const titleInfoHandler = (event) => {
+     if (titleInfoUp === false) {
+       getTitleId(event.target.id);
+       controlTitleInfo(true);
+       console.log(event.target.id)
+     } else if (titleInfoUp === true) {
+       controlTitleInfo(false);
+     }
+   };
+
+  console.log(watchModeApiResponse);
+  return (<div>
+      {titleInfoUp === true ? (
+          <TitleInfo titleInfoHandler={titleInfoHandler} id={titleId} />
+        ) : (
+          null
+        )}
+    <div className={classes.list}>
+      <button onClick={closeButtonHandler}>Close</button>
+      {watchModeApiRetrieved ? (
+        watchModeApiResponse["title_results"].map((title) => (
+          <SearchResultsCard
+            onClick={titleInfoHandler}
+            imdbid={title["imdb_id"]}
+            imgalt={title.name}
+            key={title.id}
+            id={title.id}
+            title={title.name}
+            year={title.year}
+          />
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+    </div>
+  );
 };
 export default SearchResults;

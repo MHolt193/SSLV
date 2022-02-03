@@ -65,9 +65,8 @@ const Home = (props) => {
                 imgalt={title.title}
                 key={title.id}
                 id={title.id}
-              >
-                {title.title}
-              </MovieCard>
+              />
+              
             ))
           : <p>No Titles Loaded, Out of API calls?</p>}
       </div>

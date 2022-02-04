@@ -31,45 +31,44 @@ const SearchResults = (props) => {
     callApi();
   }, [callApi]);
 
-   /* TITLE INFO */
-   const [titleInfoUp, controlTitleInfo] = useState(false);
-   const [titleId, getTitleId] = useState(undefined);
- 
-   const titleInfoHandler = (event) => {
-     if (titleInfoUp === false) {
-       getTitleId(event.target.id);
-       controlTitleInfo(true);
-       console.log(event.target.id)
-     } else if (titleInfoUp === true) {
-       controlTitleInfo(false);
-     }
-   };
+  /* TITLE INFO */
+  const [titleInfoUp, controlTitleInfo] = useState(false);
+  const [titleId, getTitleId] = useState(undefined);
+
+  const titleInfoHandler = (event) => {
+    if (titleInfoUp === false) {
+      getTitleId(event.target.id);
+      controlTitleInfo(true);
+      console.log(event.target.id);
+    } else if (titleInfoUp === true) {
+      controlTitleInfo(false);
+    }
+  };
 
   console.log(watchModeApiResponse);
-  return (<div>
+  return (
+    <div>
       {titleInfoUp === true ? (
-          <TitleInfo titleInfoHandler={titleInfoHandler} id={titleId} />
+        <TitleInfo titleInfoHandler={titleInfoHandler} id={titleId} />
+      ) : null}
+      <div className={classes.list}>
+        <button onClick={closeButtonHandler}>Close</button>
+        {watchModeApiRetrieved ? (
+          watchModeApiResponse["title_results"].map((title) => (
+            <SearchResultsCard
+              id={title.id}
+              onClick={titleInfoHandler}
+              imdbid={title["imdb_id"]}
+              imgalt={title.name}
+              key={title.id}
+              title={title.name}
+              year={title.year}
+            />
+          ))
         ) : (
-          null
+          <p>Loading...</p>
         )}
-    <div className={classes.list}>
-      <button onClick={closeButtonHandler}>Close</button>
-      {watchModeApiRetrieved ? (
-        watchModeApiResponse["title_results"].map((title) => (
-          <SearchResultsCard
-            onClick={titleInfoHandler}
-            imdbid={title["imdb_id"]}
-            imgalt={title.name}
-            key={title.id}
-            id={title.id}
-            title={title.name}
-            year={title.year}
-          />
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+      </div>
     </div>
   );
 };

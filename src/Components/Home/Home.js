@@ -3,6 +3,7 @@ import apiKey from "../../key";
 import classes from "./Home.module.css";
 import services from "../Settings/services";
 import TitleInfo from "../TitleInfo/TitleInfo";
+import MyList from "./MyList/MyList";
 
 import MovieCard from "./MovieCard";
 import Featured from "./Featured";
@@ -36,39 +37,48 @@ const Home = (props) => {
     if (titleInfoUp === false) {
       getTitleId(event.target.id);
       controlTitleInfo(true);
-      console.log(event.target.id)
+      console.log(event.target.id);
     } else if (titleInfoUp === true) {
       controlTitleInfo(false);
     }
   };
+  //My List
+  let myList = JSON.parse(localStorage.getItem("myList")) || [];
+ 
 
   return (
     <div className={classes.container}>
       {titleInfoUp === true ? (
-          <TitleInfo titleInfoHandler={titleInfoHandler} id={titleId} />
-        ) : (
-          null
-        )}
+        <TitleInfo titleInfoHandler={titleInfoHandler} id={titleId} />
+      ) : null}
       <div className={classes.list}>
         <div>
           {apiRetrieved === true && apiResponse.titles.length !== undefined ? (
-            <Featured results={apiResponse} titleInfoHandler={titleInfoHandler} />
-          ) : (
-            null
-          )}
+            <Featured
+              results={apiResponse}
+              titleInfoHandler={titleInfoHandler}
+            />
+          ) : null}
         </div>
-        {apiRetrieved === true && apiResponse.titles.length !== undefined
-          ? apiResponse.titles.map((title) => (
-              <MovieCard
-                onClick={titleInfoHandler}
-                imdbid={title["imdb_id"]}
-                imgalt={title.title}
-                key={title.id}
-                id={title.id}
-              />
-              
-            ))
-          : <p>No Titles Loaded, Out of API calls?</p>}
+        {myList.length > 0 ? (
+          <div>
+            <p>My List</p>
+            <MyList />
+          </div>
+        ) : null}
+        {apiRetrieved === true && apiResponse.titles.length !== undefined ? (
+          apiResponse.titles.map((title) => (
+            <MovieCard
+              onClick={titleInfoHandler}
+              imdbid={title["imdb_id"]}
+              imgalt={title.title}
+              key={title.id}
+              id={title.id}
+            />
+          ))
+        ) : (
+          <p>No Titles Loaded, Out of API calls?</p>
+        )}
       </div>
     </div>
   );

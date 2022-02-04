@@ -7,12 +7,7 @@ const TitleInfo = (props) => {
   const [watchModeApiResponse, setWatchModeApiResults] = useState([]);
   const [watchModeApiRetrieved, setWatchModeApiRetrieved] = useState(false);
 
-  /* TMDB IMAGE API */
-
-  const [tmdbApiResponse, setTmdbApiResults] = useState([]);
-  const [tmdbApiRetrieved, setTmdbApiRetrieved] = useState(false);
-
-  const callWatchModeApi = async () => {
+  const callWatchModeApi = useCallback( async () => {
     const response = await fetch(
       `https://api.watchmode.com/v1/title/${props.id}/details/?apiKey=${apiKey}&append_to_response=sources`
     );
@@ -20,25 +15,36 @@ const TitleInfo = (props) => {
     setWatchModeApiResults(data);
     setWatchModeApiRetrieved(true);
     console.log(data);
-  };
+  },[props.id]);
 
   useEffect(() => {
     callWatchModeApi();
     //eslint-disable-next-line
   }, []);
 
+  /* TMDB IMAGE API */
+
+  const [tmdbApiResponse, setTmdbApiResults] = useState([]);
+  const [tmdbApiRetrieved, setTmdbApiRetrieved] = useState(false);
+
+ 
+
+
   let titleLink = "";
-  if (watchModeApiRetrieved && watchModeApiResponse.sources !== undefined) {
-    for (let i = 0; i < watchModeApiResponse.sources.length; i++) {
-      if (
-        localStorage.getItem(watchModeApiResponse.sources[i]["source_id"]) ===
-        "true"
-      ) {
-        titleLink = `${watchModeApiResponse.sources[i]["web_url"]}`;
-        break;
-      }else{titleLink = `${watchModeApiResponse.sources[0]['web_url']}`}
-    }
-  }
+    if (watchModeApiRetrieved && watchModeApiResponse.sources !== undefined) {
+      for (let i = 0; i < watchModeApiResponse.sources.length; i++) {
+        if (
+          localStorage.getItem(watchModeApiResponse.sources[i]["source_id"]) ===
+          "true"
+        ) {
+         titleLink = `${watchModeApiResponse.sources[i]["web_url"]}`;
+          break;
+        } else {
+         
+          titleLink = `${watchModeApiResponse.sources[0]["web_url"]}`;
+        }
+      }
+    };
 
   const callTmdbApi = useCallback(async () => {
     const response = await fetch(
@@ -88,6 +94,13 @@ const TitleInfo = (props) => {
           <p className={classes.rating}>
             Viewer Rating: {watchModeApiResponse["user_rating"]}/10
           </p>
+          {/*onMySources === false ? (
+            <p className={classes.sources}>
+              {" "}
+              This title does not appear to be on any of your selected sources,
+              Click the poster to see where to watch
+            </p>
+          ) : null */}
         </div>
         <div className={classes.cast}></div>
       </div>

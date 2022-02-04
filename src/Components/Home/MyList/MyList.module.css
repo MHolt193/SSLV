@@ -1,0 +1,11 @@
+.myList{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-bottom: 25px;
+    width: 100vw;
+    gap: 20px;
+    border: 1px solid rgb(88, 88, 88);
+    box-shadow: inset 1px 1px 10px black;
+    overflow: auto;
+}

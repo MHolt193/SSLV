@@ -16,7 +16,7 @@ const SearchResultsCard = (props) => {
     callApi();
   }, [callApi]);
   return (
-    <div className={classes.card} onClick={props.onClick} id={props.id}>
+    <div  id={props.id} className={classes.card} onClick={props.onClick}>
       {apiRetrieved === true && apiResponse["movie_results"].length >= 1 ? (
         <img
           id={props.id}

@@ -47,7 +47,8 @@
   grid-template-areas:
     "title title close"
     "description description description"
-    "rating rating rating";
+    "rating rating rating"
+    "sources sources sources"
 }
 .title {
   grid-area: title;
@@ -79,6 +80,13 @@
 }
 .rating {
   grid-area: rating;
+  justify-self: start;
+  align-items: start;
+  margin-top: 0px;
+}
+
+.sources{
+  grid-area: sources;
   justify-self: start;
   align-items: start;
   margin-top: 0px;

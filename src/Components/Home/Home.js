@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import apiKey from "../../key";
 import classes from "./Home.module.css";
 import services from "../Settings/services";
@@ -12,22 +12,32 @@ const Home = (props) => {
   /* MOVIE LIST API CALL */
   const [apiResponse, setApiResults] = useState([]);
   const [apiRetrieved, setApiRetrieved] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
 
-  const callApi = async () => {
+  const callApi = useCallback(async () => {
     const myServices = services.map((service) =>
       localStorage.getItem(service.id) === "true" ? service.id + "," : ""
     );
     const response = await fetch(
-      `https://api.watchmode.com/v1/list-titles/?apiKey=${apiKey}&source_ids=${myServices}`
+      `https://api.watchmode.com/v1/list-titles/?apiKey=${apiKey}&source_ids=${myServices}&page=${pageNumber}`
     );
     const data = await response.json();
     setApiResults(data);
     setApiRetrieved(true);
-  };
+  },[pageNumber]);
 
   useEffect(() => {
     callApi();
-  }, []);
+  }, [callApi]);
+
+  const nextPageHandler =()=>{
+    window.scroll(0,0);
+    setPageNumber(pageNumber + 1);
+  }
+  const prevPageHandler =()=>{
+    window.scroll(0,0);
+    setPageNumber(pageNumber - 1) ;
+  }
 
   /* TITLE INFO */
   const [titleInfoUp, controlTitleInfo] = useState(false);
@@ -43,8 +53,10 @@ const Home = (props) => {
     }
   };
   //My List
+  const [myListLength, setMyListLength] = useState(
+    JSON.parse(localStorage.getItem("myList")).length
+  );
   let myList = JSON.parse(localStorage.getItem("myList")) || [];
- 
 
   return (
     <div className={classes.container}>
@@ -57,13 +69,16 @@ const Home = (props) => {
             <Featured
               results={apiResponse}
               titleInfoHandler={titleInfoHandler}
+              setMyListLength={setMyListLength}
+              myListLength={myListLength}
+              myList={myList}
             />
           ) : null}
         </div>
-        {myList.length > 0 ? (
+        {myListLength > 0 ? (
           <div>
             <p>My List</p>
-            <MyList />
+            <MyList myList={myList} titleInfoHandler={titleInfoHandler} />
           </div>
         ) : null}
         {apiRetrieved === true && apiResponse.titles.length !== undefined ? (
@@ -79,6 +94,23 @@ const Home = (props) => {
         ) : (
           <p>No Titles Loaded, Out of API calls?</p>
         )}
+        {apiRetrieved === true &&
+          apiResponse.titles.length !== undefined &&
+        pageNumber === 1 ? (
+          <div className={classes.pageControl}>
+            <p>page {pageNumber}</p>
+            <button onClick={nextPageHandler}>Next Page</button>
+          </div>
+        ) : 
+          pageNumber > 1 ? (
+          <div className={classes.pageControl}>
+            <button onClick={prevPageHandler}>
+              Prev. Page
+            </button>
+            <p>page {pageNumber}</p>
+            <button onClick={nextPageHandler}>Next Page</button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

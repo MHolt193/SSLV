@@ -6,12 +6,14 @@ import classes from "./MyList.module.css";
 //My List Component
 
 const MyList = (props) => {
-  let myList = JSON.parse(localStorage.getItem("myList"));
+  
+    let myList = JSON.parse(localStorage.getItem("myList"));
 
   return (
     <div className={classes.myList}>
       {myList.map((title) => (
         <MovieCard
+        onClick={props.titleInfoHandler}
           imdbid={title["imdb_id"]}
           imgalt={title.title}
           key={title.id}

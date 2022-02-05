@@ -7,11 +7,11 @@ import classes from "./MyList.module.css";
 
 const MyList = (props) => {
   
-    let myList = JSON.parse(localStorage.getItem("myList"));
+  
 
   return (
     <div className={classes.myList}>
-      {myList.map((title) => (
+      {props.myList.map((title) => (
         <MovieCard
         onClick={props.titleInfoHandler}
           imdbid={title["imdb_id"]}

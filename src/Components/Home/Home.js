@@ -53,6 +53,9 @@ const Home = (props) => {
     }
   };
   //My List
+  if(localStorage.getItem('myList')===null){
+    localStorage.setItem('myList','[]')
+  }
   const [myListLength, setMyListLength] = useState(
     JSON.parse(localStorage.getItem("myList")).length
   );

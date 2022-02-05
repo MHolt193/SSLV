@@ -9,18 +9,19 @@ import MovieCard from "../Home/MovieCard";
 const Movies = (props) => {
   const [apiResponse, setApiResults] = useState([]);
   const [apiRetrieved, setApiRetrieved] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
 
   const callApi = useCallback(async () => {
     const myServices = services.map((service) =>
       localStorage.getItem(service.id) === "true" ? service.id + "," : ""
     );
     const response = await fetch(
-      `https://api.watchmode.com/v1/list-titles/?apiKey=${apiKey}&source_ids=${myServices}&types=movie,short_film`
+      `https://api.watchmode.com/v1/list-titles/?apiKey=${apiKey}&source_ids=${myServices}&types=movie,short_film&page=${pageNumber}`
     );
     const data = await response.json();
     setApiResults(data);
     setApiRetrieved(true);
-  }, []);
+  }, [pageNumber]);
 
   useEffect(() => {
     callApi();
@@ -38,6 +39,14 @@ const Movies = (props) => {
     } else if (titleInfoUp === true) {
       controlTitleInfo(false);
     }
+  };
+  const nextPageHandler = () => {
+    window.scroll(0, 0);
+    setPageNumber(pageNumber + 1);
+  };
+  const prevPageHandler = () => {
+    window.scroll(0, 0);
+    setPageNumber(pageNumber - 1);
   };
 
   return (
@@ -59,6 +68,18 @@ const Movies = (props) => {
               </MovieCard>
             ))
           : ""}
+        {pageNumber === 1 ? (
+          <div className={classes.pageControl}>
+            <p>page {pageNumber}</p>
+            <button onClick={nextPageHandler}>Next Page</button>
+          </div>
+        ) : pageNumber > 1 ? (
+          <div className={classes.pageControl}>
+            <button onClick={prevPageHandler}>Prev. Page</button>
+            <p>page {pageNumber}</p>
+            <button onClick={nextPageHandler}>Next Page</button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

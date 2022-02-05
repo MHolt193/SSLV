@@ -40,3 +40,25 @@
     border: none;
     border-radius:10px;
   }
+  .pageControl{
+    display:flex;
+    justify-content: flex-end;
+    width: 100vw;
+    gap: 10px;
+  
+  }
+  .pageControl button{
+    background-color: rgba(100,98,252,255);
+    border-radius: 5px;
+    border:none;
+    border-top: 2px solid rgb(139, 141, 226);
+    height: 40px;
+    width: 75px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    cursor: pointer;
+  }
+  

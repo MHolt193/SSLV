@@ -62,7 +62,7 @@ The random number is calculated one time on page load inside of a useEffect hook
 
 ![image](https://user-images.githubusercontent.com/76035004/152694602-667a8ecb-b387-413c-8187-fbcddc920499.png)
 
-There is also a my List feature on the home page. This is another feature that utalises localStorage to remember what was on the list each visit. each title added to the list renders a new movie in the my list section which is situated right below the featured title section and above the movie list section.
+There is also a my List feature on the home page. This is another feature that utilises localStorage to remember what was on the list each visit. each title added to the list renders a new movie in the my list section which is situated right below the featured title section and above the movie list section.
 
 ![image](https://user-images.githubusercontent.com/76035004/152695426-21f1f9c8-345e-4a60-bf53-f1bc738e254e.png)
 

@@ -66,5 +66,23 @@ There is also a my List feature on the home page. This is another feature that u
 
 ![image](https://user-images.githubusercontent.com/76035004/152695426-21f1f9c8-345e-4a60-bf53-f1bc738e254e.png)
 
- 
- 
+### Tv Shows & Movies
+
+The tv shows section and the movies section are not as meaty as the home page. They both make an api call uppon rendering to their respective endpoints on the watchmode api. 
+![image](https://user-images.githubusercontent.com/76035004/152696013-73e17fe1-8ca2-4f84-a29e-4c0c3cd517e7.png)
+
+ ### Catagories
+
+The catagories page renders as a list of catagories and uppon selecting a catagory another API call is sent to the respective endpoint for that catagory and a list of titles is rendered.
+
+![image](https://user-images.githubusercontent.com/76035004/152696367-a41b3526-fe13-4bf5-87da-c5ef543f9f5d.png)
+
+### Title Info
+
+When a MovieCard is clicked on, a title info modal with render. This modal contains the title poster, a description of the title, and a viewer rating. Clicking on the title poster will bring you directly to that title on the streaming platform it is available on. 
+
+![image](https://user-images.githubusercontent.com/76035004/152696653-334078e3-c83b-41fb-b3f6-380cf94f113f.png)
+
+## Next Steps
+
+As I see it, this project is far from "done", but with my current knowledge I have taken it as far as I can. as I learn more backend technologies I will try to step away from having to leverage a third party API for deep links to my selected streaming services. there will also be the OPTION of user accounts so that if a user wants, they can creat an account and save their settings and list to a database and have it in more than one browser or device. Overall this project has taught me a ton and I am happy to have set out on this journey. 

@@ -45,3 +45,17 @@ I needed a way to save the selected services so useres would not have to re-sele
 
 ![image](https://user-images.githubusercontent.com/76035004/152692314-16dd2e3b-ae1a-4067-b3c0-a6e14cac0526.png)
 
+### Home Page
+
+The Home Page was originally just going to be a list of all titles available on your selected streaming services but, I decided, It needed to have a little more substance. So I Included a "Featured Title" section above the list of titles. 
+the list of titles are obtained through an API call to the watchmode API. The response from the api is then saved in a variable called apiResponse using the React Hook useState. the response is then mapped over with each item being rendered as a MovieCard component with information being passed to the component as props. 
+![image](https://user-images.githubusercontent.com/76035004/152693059-48d88492-c22c-4cdb-be11-ce5ff025c462.png)
+  The Featured Title component is rendered above the title list and it is a random title on the page. 
+The random number is calculated one time on page load inside of a useEffect hook and stored in a useState hook so that the title does not change at unintended times.
+![image](https://user-images.githubusercontent.com/76035004/152694602-667a8ecb-b387-413c-8187-fbcddc920499.png)
+
+There is also a my List feature on the home page. This is another feature that utalises localStorage to remember what was on the list each visit. each title added to the list renders a new movie in the my list section which is situated right below the featured title section and above the movie list section.
+
+
+ 
+ 

@@ -19,6 +19,7 @@ This project was created using Reactjs, react-router, and custom CSS
 The navbar needed to be simple and intuitive so I used the Netflix android App navbar for inspiration.
 On the navbar are 6 Items. A link to the home page in the top left corner, a search button, and a settings button in the top right corner.
 On the second row are Three links, One to TV Shows, One to Movies, and one to Catagories. 
+
 ![image](https://user-images.githubusercontent.com/76035004/152691792-52ceb32e-15a2-4f6a-bea0-02264b3a3acd.png)
 
 
@@ -55,6 +56,7 @@ The search button was not working at first but eventually I set it up so that on
 
 The Home Page was originally just going to be a list of all titles available on your selected streaming services but, I decided, It needed to have a little more substance. So I Included a "Featured Title" section above the list of titles. 
 the list of titles are obtained through an API call to the watchmode API. The response from the api is then saved in a variable called apiResponse using the React Hook useState. the response is then mapped over with each item being rendered as a MovieCard component with information being passed to the component as props. 
+
 ![image](https://user-images.githubusercontent.com/76035004/152693059-48d88492-c22c-4cdb-be11-ce5ff025c462.png)
 
   The Featured Title component is rendered above the title list and it is a random title on the page. 
@@ -69,6 +71,7 @@ There is also a my List feature on the home page. This is another feature that u
 ### Tv Shows & Movies
 
 The tv shows section and the movies section are not as meaty as the home page. They both make an api call uppon rendering to their respective endpoints on the watchmode api. 
+
 ![image](https://user-images.githubusercontent.com/76035004/152696013-73e17fe1-8ca2-4f84-a29e-4c0c3cd517e7.png)
 
  ### Catagories

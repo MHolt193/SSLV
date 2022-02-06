@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Streaming Service Library Viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I was sitting on my couch trying to find something to watch having to flip through all my streaming services,
+and though to myself "I wish all these librarys could just be in one app." So I decided to try and make that happen for myself.
 
-## Available Scripts
+Now, I could Have just used one of the products I found in my search for an API that included deep links to each title, but where is the fun in that?
 
-In the project directory, you can run:
+## Leveraged API's
 
-### `npm start`
+With no backend experience I decided It would probably be best to look into some API's that would include links to titles of movies and tv shows on each streaming service. I found 1 API tha treally stood out. WatchMode.com has an amazing dataset and an API available for free for up to 1000 calls/month
+So I decided to use watchmode's API. While setting up the watchmode api, I realised none of the movie or show posters are available through watchmode, at least that I could find. So I set out on another search and ended up landing on TheMoviedb.org another wonderful resource with a free API. With these two API's I was able to integrate the entire dataset that I would need for this app.  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Technologies
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This project was created using Reactjs, react-router, and custom CSS
 
-### `npm test`
+### Project navbar
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The navbar needed to be simple and intuitive so I used the Netflix android App navbar for inspiration.
+On the navbar are 6 Items. A link to the home page in the top left corner, a search button, and a settings button in the top right corner.
+On the second row are Three links, One to TV Shows, One to Movies, and one to Catagories. 
+![image](https://user-images.githubusercontent.com/76035004/152691792-52ceb32e-15a2-4f6a-bea0-02264b3a3acd.png)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Settings
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+After setting up the navbar I felt the most important feature on it was the setting button so that is what I tackled first.
+I made an API call to watchmode and got a list of streaming services they had indexed (Well over 200 btw). Since there were so many options I tried to whittle it down to a few of the most popular streaming services here in the United States. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The services I decided on were:
+  * Netflix
+  * Amazon Prime
+  * Hulu
+  * HBO-Max
+  * Disney+
+  * AppleTV+
+  * Paramount+
+  * Peacock
+  * Peacock+
+  * Discover+
 
-### `npm run eject`
+I stored the Id's and names of these in a seperate js file and imported it into my Setting componet js file.
+I mapped over these items and rendered them as a list on my settings modal.
+I needed a way to save the selected services so useres would not have to re-select every time they visit the site so I leveraged localStorage.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![image](https://user-images.githubusercontent.com/76035004/152692314-16dd2e3b-ae1a-4067-b3c0-a6e14cac0526.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

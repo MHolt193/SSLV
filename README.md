@@ -90,7 +90,3 @@ The catagories page renders as a list of catagories and uppon selecting a catago
 When a MovieCard is clicked on, a title info modal with render. This modal contains the title poster, a description of the title, and a viewer rating. Clicking on the title poster will bring you directly to that title on the streaming platform it is available on. 
 
 ![image](https://user-images.githubusercontent.com/76035004/152696653-334078e3-c83b-41fb-b3f6-380cf94f113f.png)
-
-## Next Steps
-
-As I see it, this project is far from "done", but with my current knowledge I have taken it as far as I can. as I learn more backend technologies I will try to step away from having to leverage a third party API for deep links to my selected streaming services. there will also be the OPTION of user accounts so that if a user wants, they can creat an account and save their settings and list to a database and have it in more than one browser or device. Overall this project has taught me a ton and I am happy to have set out on this journey. 

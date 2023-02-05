@@ -22,7 +22,7 @@
   border-radius: 10px;
   margin-top: 50px;
   width: 85%;
-  gap: 15px;
+  gap: 45px;
   max-width: 1000px;
   height: 75%;
   max-height: 800px;
@@ -35,7 +35,7 @@
   justify-self: center;
   align-items: center;
   margin: 10px;
-  height: 90%;
+  min-height: 300px;
   width: 100%;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 100);
@@ -55,6 +55,7 @@
   justify-self: start;
   margin-bottom: 0px;
   text-align: left;
+  font-size: 30px;
   width: 100%;
   border-bottom: 2px solid rgb(92, 92, 92);
 }
@@ -75,6 +76,7 @@
   text-align: left;
   margin-top: 0px;
   margin-bottom: 5px;
+  font-size: 24px;
   width: 70%;
   border-bottom: 2px solid rgb(92,92,92)
 }
@@ -91,7 +93,7 @@
   align-items: start;
   margin-top: 0px;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 800px) {
   .infoCard {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -102,10 +104,11 @@
       'info info .'
       "cast cast .";
     background-color: rgba(61, 60, 63, 255);
+    justify-content: center;
     border-radius: 10px;
     margin-top: 50px;
     width: 85%;
-    gap: 15px;
+    gap: 20px;
     max-width: 1000px;
     height: 75%;
     max-height: 800px;
@@ -118,7 +121,7 @@
     align-self: center;
     margin: 10px;
     height: 100%;
-    width: 80%;
+    min-width: 250px;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 100);
   }

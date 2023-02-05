@@ -14,7 +14,6 @@ const TitleInfo = (props) => {
     const data = await response.json();
     setWatchModeApiResults(data);
     setWatchModeApiRetrieved(true);
-    console.log(data);
   },[props.id]);
 
   useEffect(() => {
@@ -52,6 +51,7 @@ const TitleInfo = (props) => {
     );
     const data = await response.json();
     setTmdbApiResults(data);
+    console.log(data)
     setTmdbApiRetrieved(true);
   }, [watchModeApiResponse]);
 
@@ -63,11 +63,11 @@ const TitleInfo = (props) => {
   return (
     <div className={classes.container}>
       <div className={classes.infoCard}>
-        <div className={classes.poster}>
+        <div>
           {watchModeApiRetrieved === true &&
           watchModeApiResponse.length !== 0 ? (
-            <a href={titleLink} target="_blank" rel="noreferrer">
-              <img
+            <a href={titleLink} target="_blank" rel="noreferrer" >
+              <img className={classes.poster}
                 src={
                   tmdbApiRetrieved &&
                   tmdbApiResponse["movie_results"].length >= 1

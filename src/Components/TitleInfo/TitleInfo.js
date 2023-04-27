@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import classes from "./TitleInfo.module.css";
 import apiKey from "../../key";
+import play from "./play.svg"
 
 const TitleInfo = (props) => {
   /* WATCHMODE API */
@@ -64,6 +65,7 @@ const TitleInfo = (props) => {
     <div className={classes.container}>
       <div className={classes.infoCard}>
         <div>
+          
           {watchModeApiRetrieved === true &&
           watchModeApiResponse.length !== 0 ? (
             <a href={titleLink} target="_blank" rel="noreferrer" >
@@ -79,6 +81,7 @@ const TitleInfo = (props) => {
                 }
                 alt={`${watchModeApiResponse.title} poster`}
               />
+              <img className={classes.play} src={play} alt=""></img>
             </a>
           ) : null}
         </div>
@@ -94,13 +97,6 @@ const TitleInfo = (props) => {
           <p className={classes.rating}>
             Viewer Rating: {watchModeApiResponse["user_rating"]}/10
           </p>
-          {/*onMySources === false ? (
-            <p className={classes.sources}>
-              {" "}
-              This title does not appear to be on any of your selected sources,
-              Click the poster to see where to watch
-            </p>
-          ) : null */}
         </div>
         <div className={classes.cast}></div>
       </div>

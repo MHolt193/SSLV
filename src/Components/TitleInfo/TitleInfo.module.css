@@ -28,6 +28,7 @@
   max-height: 800px;
   box-shadow: 1px 1px 10px rgb(105, 105, 105);
   overflow: auto;
+  position:relative;
 }
 
 .poster {
@@ -39,6 +40,15 @@
   width: 100%;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 100);
+  position: relative;
+}
+.play{
+  position: absolute;
+  left: 110px;
+  top: 175px;
+}
+.play:hover{
+  scale: 1.1;
 }
 .info {
   grid-area: info;

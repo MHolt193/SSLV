@@ -19,11 +19,11 @@ const MovieCard = (props) => {
 
   return (
     <div className={classes.card} onClick={props.onClick}>
-      {apiRetrieved === true && apiResponse['movie_results'] && apiResponse['movie_results'].length  >= 1 ?
+      {apiRetrieved === true && apiResponse['movie_results'] !== undefined && apiResponse['movie_results'].length  >= 1 ?
       <img  id={props.id}
         src={`http://image.tmdb.org/t/p/w154${apiResponse['movie_results'][0]['poster_path']}`}
         alt={`${props.imgalt} poster`}
-      />: apiRetrieved === true && apiResponse['movie_results'] && apiResponse['tv_results'].length >= 1 &&<img  id={props.id}
+      />: apiRetrieved === true && apiResponse['tv_results'] !== undefined && apiResponse['tv_results'].length >= 1 &&<img  id={props.id}
       src={`http://image.tmdb.org/t/p/w154${apiResponse['tv_results'][0]['poster_path']}`}
       alt={`${props.imgalt} poster`}
     />}

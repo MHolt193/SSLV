@@ -12,23 +12,19 @@
 
 .infoCard {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: minmax(150px, auto);
-  grid-template-areas:
-    "poster  info info"
-    "poster  info info"
-    "cast cast cast";
-  background-color: rgba(61, 60, 63, 255);
-  border-radius: 10px;
-  margin-top: 50px;
   width: 85%;
-  gap: 45px;
-  max-width: 1000px;
   height: 75%;
+  max-width: 1000px;
+  position: relative;
+  grid-template-areas:
+    "poster info info "
+    "poster info info "
+    "cast cast cast";
+  background-color: #3d3c3f;
+  gap: 20px;
+  border-radius: 10px;
   max-height: 800px;
-  box-shadow: 1px 1px 10px rgb(105, 105, 105);
   overflow: auto;
-  position:relative;
 }
 
 .poster {
@@ -37,17 +33,20 @@
   align-items: center;
   margin: 10px;
   min-height: 300px;
-  width: 100%;
+  min-width: 200px;
+  max-width: 400px;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 100);
   position: relative;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
-.play{
+.play {
   position: absolute;
-  left: 110px;
-  top: 175px;
+  left: 25%;
+  top: 30%;
 }
-.play:hover{
+.play:hover {
   scale: 1.1;
 }
 .info {
@@ -58,7 +57,7 @@
     "title title close"
     "description description description"
     "rating rating rating"
-    "sources sources sources"
+    "sources sources sources";
 }
 .title {
   grid-area: title;
@@ -71,7 +70,7 @@
 }
 .close {
   grid-area: close;
-  justify-self: end;
+  justify-self: right;
   align-items: start;
   width: 25px;
   height: 25px;
@@ -88,7 +87,7 @@
   margin-bottom: 5px;
   font-size: 24px;
   width: 70%;
-  border-bottom: 2px solid rgb(92,92,92)
+  border-bottom: 2px solid rgb(92, 92, 92);
 }
 .rating {
   grid-area: rating;
@@ -97,86 +96,31 @@
   margin-top: 0px;
 }
 
-.sources{
-  grid-area: sources;
-  justify-self: start;
-  align-items: start;
-  margin-top: 0px;
+.cast {
+  grid-area: cast;
+  display: flex;
+  overflow: scroll;
+  align-items: baseline;
+  gap: 5px;
+  border: 1px solid rgb(88, 88, 88);
+  box-shadow: inset 1px 1px 10px black;
+  padding-top: 25px;
 }
 @media screen and (max-width: 800px) {
   .infoCard {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: minmax(150px, auto);
-    grid-template-areas:
-      "poster  poster close"
-      "poster  poster ."
-      'info info .'
-      "cast cast .";
-    background-color: rgba(61, 60, 63, 255);
-    justify-content: center;
-    border-radius: 10px;
-    margin-top: 50px;
-    width: 85%;
+    display: flex;
+    justify-content: top;
+    align-items: center;
+    flex-direction: column;
+    max-width: 85%;
+    max-height: 90%;
+    background-color: #3d3c3f;
     gap: 20px;
-    max-width: 1000px;
-    height: 75%;
-    max-height: 800px;
-    box-shadow: 1px 1px 10px rgb(105, 105, 105);
-    overflow: auto;
+    border-radius: 10px;
+    overflow: scroll;
   }
-  .poster {
-    grid-area: poster;
-    justify-self: center;
-    align-self: center;
-    margin: 10px;
-    height: 100%;
-    min-width: 250px;
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 100);
-  }
-  .info {
-    grid-area: info;
-    display: grid;
-    justify-self: center;
-    grid-template-rows: min-content min-content min-content;
-    grid-template-areas:
-      "title title"
-      "description description"
-      "rating rating";
-  }
-  .title {
-    grid-area: title;
-    justify-self: start;
-    margin-bottom: 0px;
-    text-align: left;
+  .cast {
     width: 100%;
-    border-bottom: 2px solid rgb(92, 92, 92);
-  }
-  .close {
-    grid-area: close;
-    justify-self: end;
-    align-items: start;
-    width: 25px;
-    height: 25px;
-    border-radius: 5px;
-    margin-right: 5px;
-    margin-top: 5px;
-  }
-  .description {
-    grid-area: description;
-    justify-self: start;
-    align-items: start;
-    text-align: left;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    width: 90%;
-    border-bottom: 2px solid rgb(92,92,92)
-  }
-  .rating {
-    grid-area: rating;
-    justify-self: start;
-    align-items: start;
-    margin-top: 0px;
+    min-height: 300px;
   }
 }

@@ -35,13 +35,13 @@ const Featured = (props) => {
   return (
     <div className={classes.featured}>
       <h1 style={{ fontSize: 28 + "px" }}>Featured Title</h1>
-      {apiRetrieved === true && apiResponse["movie_results"].length >= 1 ? (
+      {apiRetrieved === true && apiResponse["movie_results"] !== undefined && apiResponse["movie_results"].length >= 1 ? (
         <img
           id={props.id}
           src={`http://image.tmdb.org/t/p/w300${apiResponse["movie_results"][0]["poster_path"]}`}
           alt={`${props.imgalt} poster`}
         />
-      ) : apiRetrieved === true && apiResponse["tv_results"].length >= 1 ? (
+      ) : apiRetrieved === true && apiResponse["tv_results"] !== undefined && apiResponse["tv_results"].length >= 1 ? (
         <img
           id={props.id}
           src={`http://image.tmdb.org/t/p/w300${apiResponse["tv_results"][0]["poster_path"]}`}

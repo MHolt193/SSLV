@@ -1,21 +1,23 @@
 import React, { useState, useEffect, useCallback } from "react";
 import classes from "./TitleInfo.module.css";
 import apiKey from "../../key";
-import play from "./play.svg"
+import play from "./play.svg";
+import CastCard from "./CastCard";
 
 const TitleInfo = (props) => {
   /* WATCHMODE API */
   const [watchModeApiResponse, setWatchModeApiResults] = useState([]);
   const [watchModeApiRetrieved, setWatchModeApiRetrieved] = useState(false);
 
-  const callWatchModeApi = useCallback( async () => {
+  const callWatchModeApi = useCallback(async () => {
     const response = await fetch(
-      `https://api.watchmode.com/v1/title/${props.id}/details/?apiKey=${apiKey}&append_to_response=sources`
+      `https://api.watchmode.com/v1/title/${props.id}/details/?apiKey=${apiKey}&append_to_response=sources,cast-crew`
     );
     const data = await response.json();
     setWatchModeApiResults(data);
+    console.log(data);
     setWatchModeApiRetrieved(true);
-  },[props.id]);
+  }, [props.id]);
 
   useEffect(() => {
     callWatchModeApi();
@@ -27,24 +29,20 @@ const TitleInfo = (props) => {
   const [tmdbApiResponse, setTmdbApiResults] = useState([]);
   const [tmdbApiRetrieved, setTmdbApiRetrieved] = useState(false);
 
- 
-
-
   let titleLink = "";
-    if (watchModeApiRetrieved && watchModeApiResponse.sources !== undefined) {
-      for (let i = 0; i < watchModeApiResponse.sources.length; i++) {
-        if (
-          localStorage.getItem(watchModeApiResponse.sources[i]["source_id"]) ===
-          "true"
-        ) {
-         titleLink = `${watchModeApiResponse.sources[i]["web_url"]}`;
-          break;
-        } else {
-         
-          titleLink = `${watchModeApiResponse.sources[0]["web_url"]}`;
-        }
+  if (watchModeApiRetrieved && watchModeApiResponse.sources !== undefined) {
+    for (let i = 0; i < watchModeApiResponse.sources.length; i++) {
+      if (
+        localStorage.getItem(watchModeApiResponse.sources[i]["source_id"]) ===
+        "true"
+      ) {
+        titleLink = `${watchModeApiResponse.sources[i]["web_url"]}`;
+        break;
+      } else {
+        titleLink = `${watchModeApiResponse.sources[0]["web_url"]}`;
       }
-    };
+    }
+  }
 
   const callTmdbApi = useCallback(async () => {
     const response = await fetch(
@@ -52,7 +50,6 @@ const TitleInfo = (props) => {
     );
     const data = await response.json();
     setTmdbApiResults(data);
-    console.log(data)
     setTmdbApiRetrieved(true);
   }, [watchModeApiResponse]);
 
@@ -64,23 +61,16 @@ const TitleInfo = (props) => {
   return (
     <div className={classes.container}>
       <div className={classes.infoCard}>
-        <div>
-          
-          {watchModeApiRetrieved === true &&
-          watchModeApiResponse.length !== 0 ? (
-            <a href={titleLink} target="_blank" rel="noreferrer" >
-              <img className={classes.poster}
-                src={
-                  tmdbApiRetrieved &&
+        <div className={classes.poster} style={{backgroundImage: tmdbApiRetrieved &&
                   tmdbApiResponse["movie_results"].length >= 1
-                    ? `http://image.tmdb.org/t/p/w185${tmdbApiResponse["movie_results"][0]["poster_path"]}`
+                    ? `url(http://image.tmdb.org/t/p/w185${tmdbApiResponse["movie_results"][0]["poster_path"]})`
                     : tmdbApiRetrieved &&
                       tmdbApiResponse["tv_results"].length >= 1
-                    ? `http://image.tmdb.org/t/p/w185${tmdbApiResponse["tv_results"][0]["poster_path"]}`
-                    : `http://img.omdbapi.com/?apikey=89a451f1&i=${watchModeApiResponse["imdb_id"]}`
-                }
-                alt={`${watchModeApiResponse.title} poster`}
-              />
+                    ? `url(http://image.tmdb.org/t/p/w185${tmdbApiResponse["tv_results"][0]["poster_path"]})`
+                    : `url(http://img.omdbapi.com/?apikey=89a451f1&i=${watchModeApiResponse["imdb_id"]})` }}>
+          {watchModeApiRetrieved === true &&
+          watchModeApiResponse.length !== 0 ? (
+            <a href={titleLink} target="_blank" rel="noreferrer">
               <img className={classes.play} src={play} alt=""></img>
             </a>
           ) : null}
@@ -98,7 +88,18 @@ const TitleInfo = (props) => {
             Viewer Rating: {watchModeApiResponse["user_rating"]}/10
           </p>
         </div>
-        <div className={classes.cast}></div>
+        <div className={classes.cast}>
+          {watchModeApiRetrieved && watchModeApiResponse.cast_crew !== undefined
+            ? watchModeApiResponse.cast_crew.map((person) => (
+              person.type === "Cast" &&
+                <CastCard
+                  name={person["full_name"]}
+                  headshot={person["headshot_url"]}
+                  role={person.role}
+                />
+              ))
+            : "Cast not found"}
+        </div>
       </div>
     </div>
   );
